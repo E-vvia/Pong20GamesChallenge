@@ -1,5 +1,4 @@
 #include <raylib.h>
-#include <iostream>
 #include "game.h"
 #include "main_menu.h"
 

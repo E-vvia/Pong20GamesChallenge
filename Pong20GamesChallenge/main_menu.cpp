@@ -3,9 +3,9 @@
 #include "game_1P_scene.h"
 #include "game_2P_scene.h"
 
-const std::string MainMenu::option1 = "1 Player";
-const std::string MainMenu::option2 = "2 Players";
-const std::string MainMenu::option3 = "Exit";
+const char* MainMenu::option1 = "1 Player";
+const char* MainMenu::option2 = "2 Players";
+const char* MainMenu::option3 = "Exit";
 
 void MainMenu::Input()
 {
@@ -40,9 +40,9 @@ void MainMenu::Input()
 
 void MainMenu::Draw()
 {
-	int textLength1 = MeasureText(option1.c_str(), 50);
-	int textLength2 = MeasureText(option2.c_str(), 50);
-	int textLength3 = MeasureText(option3.c_str(), 50);
+	int textLength1 = MeasureText(option1, 50);
+	int textLength2 = MeasureText(option2, 50);
+	int textLength3 = MeasureText(option3, 50);
 	int halfScreenWidth = GetScreenWidth() / 2;
 	int halfScreenHeight = GetScreenHeight() / 2;
 
@@ -52,18 +52,18 @@ void MainMenu::Draw()
 		DrawRectangle(halfScreenWidth - textLength1 / 2 - 5, halfScreenHeight - 85, textLength1 + 10, 60, DARKGRAY);
 
 	DrawRectangleLines(halfScreenWidth - textLength1 / 2 - 5, halfScreenHeight - 85, textLength1 + 10, 60, LIGHTGRAY);
-	DrawText(option1.c_str(), halfScreenWidth - textLength1 / 2, halfScreenHeight - 80, 50, WHITE);
+	DrawText(option1, halfScreenWidth - textLength1 / 2, halfScreenHeight - 80, 50, WHITE);
 
 	if (this->option == 1)
 		DrawRectangle(halfScreenWidth - textLength2 / 2 - 5, halfScreenHeight - 5, textLength2 + 10, 60, DARKGRAY);
 
 	DrawRectangleLines(halfScreenWidth - textLength2 / 2 - 5, halfScreenHeight - 5, textLength2 + 10, 60, LIGHTGRAY);
-	DrawText(option2.c_str(), halfScreenWidth - textLength2 / 2, halfScreenHeight, 50, WHITE);
+	DrawText(option2, halfScreenWidth - textLength2 / 2, halfScreenHeight, 50, WHITE);
 
 	if (this->option == 2)
 		DrawRectangle(halfScreenWidth - textLength3 / 2 - 5, halfScreenHeight + 75, textLength3 + 10, 60, DARKGRAY);
 	DrawRectangleLines(halfScreenWidth - textLength3 / 2 - 5, halfScreenHeight + 75, textLength3 + 10, 60, LIGHTGRAY);
-	DrawText(option3.c_str(), halfScreenWidth - textLength3 / 2, halfScreenHeight + 80, 50, WHITE);
+	DrawText(option3, halfScreenWidth - textLength3 / 2, halfScreenHeight + 80, 50, WHITE);
 }
 
 

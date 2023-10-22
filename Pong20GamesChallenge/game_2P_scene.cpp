@@ -1,4 +1,3 @@
-#include <string>
 #include "game_2P_scene.h"
 #include "player.h"
 #include "ball.h"
@@ -9,9 +8,6 @@ Game2PScene::Game2PScene() {
 	p1 = new Player(50);
 	p2 = new Player(GetScreenWidth() - 60);
 	b = new Ball();
-
-	b->OnLeftGoal = std::bind(&Player::IncreaseScore, p2);
-	b->OnRightGoal = std::bind(&Player::IncreaseScore, p1);
 }
 
 Game2PScene::~Game2PScene()
@@ -28,6 +24,16 @@ void Game2PScene::Physics() {
 	}
 	else {
 		b->SetIsHit(false);
+	}
+
+	if (b->GetPosition().x >= GetScreenWidth()) {
+		b->Reset();
+		p1->IncreaseScore();
+	}
+
+	if (b->GetPosition().x <= 0) {
+		b->Reset();
+		p2->IncreaseScore();
 	}
 }
 
@@ -49,12 +55,13 @@ void Game2PScene::Draw() {
 
 	DrawText("Press R to restart", 0, GetScreenHeight() - 10, 10, WHITE);
 
-	std::string p1Score = std::to_string(p1->GetScore());
-	std::string p2Score = std::to_string(p2->GetScore());
+	const char* p1Score = TextFormat("%d", p1->GetScore());
+	const char* p2Score = TextFormat("%d", p2->GetScore());
+
 	float halfScreen = GetScreenWidth() / 2.0;
 
-	DrawText(p1Score.c_str(), halfScreen - MeasureText(p1Score.c_str(), 70) - 50, 50, 50, WHITE);
-	DrawText(p2Score.c_str(), halfScreen + 50, 50, 50, WHITE);
+	DrawText(p1Score, halfScreen - MeasureText(p1Score, 70) - 50, 50, 50, WHITE);
+	DrawText(p2Score, halfScreen + 50, 50, 50, WHITE);
 
 	for (int i = 0; i < GetScreenHeight(); i += 10) {
 		DrawLine(GetScreenWidth() / 2, i, GetScreenWidth() / 2, i + 5, WHITE);

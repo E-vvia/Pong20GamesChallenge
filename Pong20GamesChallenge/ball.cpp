@@ -12,7 +12,7 @@ void Ball::BounceX()
 		this->speed.x *= -1;
 }
 
-void Ball::reset()
+void Ball::Reset()
 {
 	this->position.x = GetScreenWidth() / 2.0;
 	this->position.y = GetScreenHeight() / 2.0;
@@ -51,16 +51,6 @@ void Ball::Draw()
 void Ball::Move() {
 
 	this->position.x += this->speed.x * GetFrameTime();
-
-	if (this->position.x <= 0) {
-		this->OnLeftGoal();
-		this->reset();
-	}
-	else if (this->position.x >= GetScreenWidth()) {
-		this->OnRightGoal();
-		this->reset();
-	}
-
 	this->position.y += this->speed.y * GetFrameTime();
 
 	if (this->position.y <= 0) {
@@ -74,5 +64,5 @@ void Ball::Move() {
 
 Ball::Ball()
 {
-	this->reset();
+	this->Reset();
 }

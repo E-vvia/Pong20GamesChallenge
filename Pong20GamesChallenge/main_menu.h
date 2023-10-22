@@ -1,16 +1,15 @@
 #pragma once
-#include <string>
 #include "scene.h"
 
 
 class MainMenu : public Scene {
 private:
-	static const std::string option1;
-	static const std::string option2;
-	static const std::string option3;
+	static const char* option1;
+	static const char* option2;
+	static const char* option3;
 
 	int option = 0;
-	
+
 	Rectangle startP1;
 	Rectangle startP2;
 	Rectangle exit;

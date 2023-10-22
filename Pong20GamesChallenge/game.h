@@ -1,5 +1,4 @@
 #pragma once
-#include <array>
 #include "scene.h"
 
 class Game {
